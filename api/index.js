@@ -12,7 +12,7 @@ const { bigArray: newBigArray, cityWiseResource } = require("./allList");
 // const db = firebase.firestore();
 
 // Resource Fetching
-cityWiseResource();
+// cityWiseResource();
 
 // Declare a route
 app.get("/api", async function (request, reply) {
