@@ -1,10 +1,9 @@
 const puppeteer = require("puppeteer");
+const express = require("express");
 const firebase = require("firebase");
 const { v4 } = require("uuid");
 // Require the framework and instantiate it
-const app = require("fastify")({
-  logger: true,
-});
+const app = express();
 
 const { bigArray: newBigArray, cityWiseResource } = require("./api/allList");
 const { firebaseConfig } = require("./firebase-config");
@@ -90,29 +89,25 @@ cityWiseResource();
 // Declare a route
 app.get("/", async function (request, reply) {
   if (newBigArray.length === 0) {
-    console.log("Yesss");
-
-    reply.redirect("/");
     setTimeout(() => {
-      reply.send({ data: bigArray });
+      res.send({ data: bigArray });
     }, 3000);
   } else {
-    reply.send({ data: bigArray });
+    res.send({ data: bigArray });
   }
 });
 
-app.get("/city", async function (request, reply) {
+app.get("/city", async function (request, res) {
   if (newBigArray.length === 0) {
-    reply.redirect("/city");
     setTimeout(() => {
-      reply.send({ data: newBigArray });
+      res.send({ data: newBigArray });
     }, 3000);
   } else {
-    reply.send({ data: newBigArray });
+    res.send({ data: newBigArray });
   }
 });
 
-app.post("/api/create", function (request, reply) {
+app.post("/api/create", function (request, res) {
   (async function () {
     try {
       bigArray.forEach(async (item) => {
@@ -122,13 +117,13 @@ app.post("/api/create", function (request, reply) {
       newBigArray.forEach(async (item) => {
         await db.collection(request.body.citywiseresource).add(item);
       });
-      reply.status(200).send();
+      res.status(200).send();
     } catch (error) {
       console.log(error);
-      reply.status(400).send("Error");
+      res.status(400).send("Error");
     }
   })();
 });
 
 // Run the server!
-app.listen(process.env.PORT || 3000, "0.0.0.0");
+app.listen(process.env.PORT || 3000);
