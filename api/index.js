@@ -84,7 +84,7 @@ let cutOff = 3;
 cityWiseResource();
 
 // Declare a route
-app.get("/", async function (request, reply) {
+app.get("/api", async function (request, reply) {
   reply.headers({
     "Content-Type": "application/json",
     "Cache-Control": "s-max-age=1, stale-while-revalidate",
@@ -101,7 +101,7 @@ app.get("/", async function (request, reply) {
   }
 });
 
-app.get("/city", async function (request, reply) {
+app.get("/api/city", async function (request, reply) {
   if (newBigArray.length === 0) {
     reply.redirect("/city");
     setTimeout(() => {
