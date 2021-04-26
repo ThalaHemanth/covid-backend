@@ -19,7 +19,10 @@ let cutOff = 3;
 (async () => {
   console.log("\x1Bc");
   console.log("HEEEEEEEEEEEEEE", v4());
-  const browser = await puppeteer.launch({ headless: true });
+  const browser = await puppeteer.launch({
+    headless: true,
+    args: ["--no-sandbox"],
+  });
   const page = await browser.newPage();
   await page.waitForTimeout(2000);
   // await page.goto('https://www.covidsource.info/city-wise-resource-list');
