@@ -85,6 +85,10 @@ cityWiseResource();
 
 // Declare a route
 app.get("/", async function (request, reply) {
+  reply.headers({
+    "Content-Type": "application/json",
+    "Cache-Control": "s-max-age=1, stale-while-revalidate",
+  });
   if (newBigArray.length === 0) {
     console.log("Yesss");
 
@@ -134,3 +138,5 @@ app.listen(3000, function (err, address) {
   }
   app.log.info(`server listening on ${address}`);
 });
+
+module.exports = app;
