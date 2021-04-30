@@ -1,5 +1,6 @@
 const express = require("express");
 const cheerio = require("cheerio");
+const cors = require('cors')
 const { default: axios } = require("axios");
 const app = express();
 
@@ -8,6 +9,8 @@ const remdesivirData = new Array();
 let dummyCity = new Array();
 
 let cutOff1 = 3;
+
+app.use(cors())
 
 app.get("/api/city", (req, res) => {
   (async () => {
