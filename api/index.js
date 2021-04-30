@@ -32,6 +32,8 @@ app.get("/", (req, res) => {
       }
     });
   })();
+  res.statusCode = 200;
+  res.setHeader("Content-Type", "application/json");
   res.send({ data: cityWiseData });
 });
 
@@ -57,12 +59,16 @@ app.get("/rem", (req, res) => {
     });
   })();
   setTimeout(() => {
+    res.statusCode = 200;
+    res.setHeader("Content-Type", "application/json");
     res.send({ data: remdesivirData });
   }, 2000);
 });
 
 const PORT = process.env.PORT || 4000;
 
-app.listen(PORT, () => {
-  console.log("Server Running");
-});
+// app.listen(PORT, () => {
+//   console.log("Server Running");
+// });
+
+module.exports = app;
