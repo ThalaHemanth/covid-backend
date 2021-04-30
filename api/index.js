@@ -32,9 +32,11 @@ app.get("/api/city", (req, res) => {
       }
     });
   })();
-  res.statusCode = 200;
-  res.setHeader("Content-Type", "application/json");
-  res.send({ data: cityWiseData });
+  setTimeout(() => {
+    res.statusCode = 200;
+    res.setHeader("Content-Type", "application/json");
+    res.send({ data: cityWiseData });
+  }, 2000);
 });
 
 app.get("/api/rem", (req, res) => {
