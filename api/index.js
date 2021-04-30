@@ -61,6 +61,8 @@ app.get("/rem", (req, res) => {
   }, 2000);
 });
 
-app.listen(4000, () => {
+const PORT = process.env.PORT || 4000;
+
+app.listen(PORT, () => {
   console.log("Server Running");
 });
