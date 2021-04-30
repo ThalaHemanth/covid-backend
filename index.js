@@ -5,7 +5,7 @@ const { v4 } = require("uuid");
 // Require the framework and instantiate it
 const app = express();
 
-const { bigArray: newBigArray, cityWiseResource } = require("./api/allList");
+const { bigArray: newBigArray, cityWiseResource } = require("./allList");
 const { firebaseConfig } = require("./firebase-config");
 
 firebase.initializeApp(firebaseConfig);
@@ -86,8 +86,32 @@ let cutOff = 3;
 // Resource Fetching
 cityWiseResource();
 
+app.use(function (req, res, next) {
+  // Website you wish to allow to connect
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:8888");
+
+  // Request methods you wish to allow
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
+  );
+
+  // Request headers you wish to allow
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "X-Requested-With,content-type"
+  );
+
+  // Set to true if you need the website to include cookies in the requests sent
+  // to the API (e.g. in case you use sessions)
+  res.setHeader("Access-Control-Allow-Credentials", true);
+
+  // Pass to next layer of middleware
+  next();
+});
+
 // Declare a route
-app.get("/", async function (request, reply) {
+app.get("/", async function (request, res) {
   if (newBigArray.length === 0) {
     setTimeout(() => {
       res.send({ data: bigArray });
@@ -126,4 +150,4 @@ app.post("/api/create", function (request, res) {
 });
 
 // Run the server!
-app.listen(process.env.PORT || 3000);
+app.listen(process.env.PORT || 4000);

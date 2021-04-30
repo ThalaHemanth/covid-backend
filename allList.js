@@ -1,8 +1,8 @@
 const puppeteer = require("puppeteer");
 // Require the framework and instantiate it
-const fastify = require("fastify")({
-  logger: true,
-});
+// const express = require("expreess");
+
+// const app = express();
 
 let dummy = new Array();
 const bigArray = new Array();
