@@ -9,7 +9,7 @@ let dummyCity = new Array();
 
 let cutOff1 = 3;
 
-app.get("/", (req, res) => {
+app.get("/api/city", (req, res) => {
   (async () => {
     const { data } = await axios.get(
       "https://www.covidsource.info/city-wise-resource-list",
@@ -37,7 +37,7 @@ app.get("/", (req, res) => {
   res.send({ data: cityWiseData });
 });
 
-app.get("/rem", (req, res) => {
+app.get("/api/rem", (req, res) => {
   (async () => {
     const { data } = await axios.get(
       "https://api.jsonbin.io/b/608bc75ed64cd16802a505da",
