@@ -10,7 +10,7 @@ let dummyCity = new Array();
 
 let cutOff1 = 3;
 
-app.use(cors())
+app.use(cors());
 
 app.get("/api/city", (req, res) => {
   (async () => {
