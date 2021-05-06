@@ -10,7 +10,7 @@ let dummyCity = new Array();
 
 let cutOff1 = 3;
 
-app.use(cors());
+app.use(cors())
 
 app.get("/api/city", (req, res) => {
   (async () => {
@@ -45,7 +45,7 @@ app.get("/api/city", (req, res) => {
 app.get("/api/rem", (req, res) => {
   (async () => {
     const { data } = await axios.get(
-      "https://api.jsonbin.io/b/608bc75ed64cd16802a505da",
+      "https://api.jsonbin.io/b/6093f9f3ca83ff5fe03eef6b",
       {
         headers: {
           "secret-key":
